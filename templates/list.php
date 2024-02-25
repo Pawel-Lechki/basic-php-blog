@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <title>List of Posts</title>
-</head>
-<body>
+<?php $title = "List of posts"; ?>
+<?php ob_start()?>
 <h1>List of Posts</h1>
 <ul>
     <?php foreach ($posts as $post): ?>
@@ -14,5 +10,6 @@
         </li>
     <?php endforeach; ?>
 </ul>
-</body>
-</html>
+<?php $content = ob_get_clean() ?>
+
+<?php include 'layout.html.php' ?>
