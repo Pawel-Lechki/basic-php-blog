@@ -27,3 +27,19 @@ function get_all_posts()
 
     return $posts;
 }
+
+function get_post($id)
+{
+    $connection = open_database_connection();
+
+    $sql = 'SELECT id, title, created_at, body FROM post WHERE id = :id';
+    $stmt = $connection->prepare($sql);
+    $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    $post = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    close_database_connection($connection);
+
+    return $post;
+}
