@@ -1,15 +1,7 @@
 <?php
 
-$connection = new PDO("sqlite:" . __DIR__ ."/flat.db");
+require_once __DIR__ . '/model.php';
 
-$result = $connection->query('SELECT id, title FROM post');
-
-$posts = [];
-
-while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-    $posts[] = $row;
-}
-
-$connection = null;
+$posts = get_all_posts();
 
 require __DIR__ . '/templates/list.php';
